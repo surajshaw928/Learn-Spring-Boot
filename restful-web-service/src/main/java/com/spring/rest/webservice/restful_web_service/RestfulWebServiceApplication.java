@@ -12,6 +12,12 @@ public class RestfulWebServiceApplication {
 
 }
 
+/*
+ * OPENAPI provides API definition (SCHEMAS,RESOURCE LOCATION ...etc) and Swagger UI helps to visualize it and can also view the request and response format (Dependency needed to be added in pom.xml)
+ * CONTENT NEGOTIATION : It is a negotiation b/w consumer and provider what kind of representation they want XML or JSON from the same resource(API), (Dependency needed to be added in pom.xml) Also in request specify the 'Accept' header
+ * il8n-Internationalization - The response might be getting consumed by different people around the world in different language, the Accept-Language header specifies it defined in an API request.
+ */
+
 //Using plural nouns in REST resource URLs (for example, /users, /posts) is a common industry practice and improves readability and clarity.
 
 //What is a web application ?

@@ -4,7 +4,10 @@ package com.spring.rest.webservice.restful_web_service.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +27,14 @@ import jakarta.validation.Valid;
 public class UserResource {
 
 	private UserDaoService service;
+	
+	private MessageSource messageSource;
 
-	public UserResource(UserDaoService service) {
+	
+	//This is known as CONSTRUCTOR INJECTION
+	public UserResource(UserDaoService service,MessageSource messageSource) {
 		this.service = service;
+		this.messageSource=messageSource;
 	}
 
 	// GET /users
@@ -69,6 +77,16 @@ public class UserResource {
 	@DeleteMapping("/users/{id}")
 	public void deleteUser(@PathVariable int id) {
 	service.deleteById(id);	
+	}
+	
+	
+//	This is to return message based on the 'Accept-Language' locale header is given  , For Example :English : 'en',French :'fr'
+	@GetMapping("/")
+	public String welcomeUser() {
+		Locale locale=LocaleContextHolder.getLocale();
+		return	messageSource.getMessage("good.morning.message",null, "Default Message", locale);
+		
+	
 	}
 	
 
