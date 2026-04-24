@@ -13,7 +13,7 @@ import com.spring.rest.webservice.restful_web_service.model.PersonV2;
 //We can version our API in different ways
 @RestController
 public class VersioningPersonController {
-//	TWITTER 	
+//	TWITTER ,URL based versioning	
 	@GetMapping("/v1/person")
 	public PersonV1 getFirstVersionOfPerson() {
 		return new PersonV1("Bob Charlie");
@@ -60,6 +60,32 @@ public class VersioningPersonController {
 		return new PersonV2(new Name("Bob", "Charlie"));
 	}
 	
+	 
+//	sbi : SPRINGBOOT inbuilt versioning (Change application.properties accordingly)
+//	PATH BASED VERSIONING
+//	@GetMapping(value="/{version}/personsbi", version="1.0.0") 
+//	public PersonV1 getFirstVersionOfPersonByPathSegment() {
+//		return new PersonV1("Bob Charlie");
+//	}
+	
+//	SBI Parameter based versioning	
+	
+//	MEDIA TYPE or ACCEPT HEADER VERSIONING
+	@GetMapping(value="/personsbi", version="1.0.0") 
+	public PersonV1 getFirstVersionOfPersonByParamSegment() {
+		return new PersonV1("Bob Charlie");
+	}
+	
+	//SBI header
+//	@GetMapping(path="/personsbi", headers ="X-API-VERSION=1") 
+//	public PersonV1 getFirstVersionOfPersonByHeaderSegment() {
+//		return new PersonV1("Bob Charlie");
+//	}
+
+	
+	
+	
+	//
 	
 	/*
 	 * FACTORS TO CONSIDER API VERSIONING
